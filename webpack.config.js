@@ -2,15 +2,23 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-
 module.exports = {
   entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
+    publicPath: '/'
   },
   resolve: {
     extensions: [".js", ".jsx", ".ts", ".tsx"],
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components/'),
+      '@containers': path.resolve(__dirname, 'src/containers/'),
+      '@pages': path.resolve(__dirname, 'src/pages/'),
+      '@styles': path.resolve(__dirname, 'src/styles/'),
+      '@icons': path.resolve(__dirname, 'src/assets/icons/'),
+      '@logos': path.resolve(__dirname, 'src/assets/logos/'),
+    }
   },
   module: {
     rules: [
@@ -36,7 +44,11 @@ module.exports = {
           "css-loader",
           "sass-loader"
         ]
-      }
+      },
+      {
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        type: 'asset'
+      },
     ],
   },
   plugins: [
@@ -53,6 +65,7 @@ module.exports = {
         directory: path.join(__dirname, 'public'),
       },
       compress: true,
+      historyApiFallback: true,
       port: 3000,
   },
 };
