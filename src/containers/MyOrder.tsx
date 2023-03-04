@@ -3,7 +3,7 @@ import OrderItem from '../components/OrderItem';
 import '../styles/MyOrder.scss';
 import AppContext from '../context/AppContext';
 import { Product } from '../hooks/useGetProducts';
-
+import flechita from '../assets/icons/flechita.svg';
 const MyOrder = () => {
   const { state } = useContext(AppContext) as any;
 
@@ -16,7 +16,7 @@ const MyOrder = () => {
   return (
     <aside className="MyOrder">
         <div className="title-container">
-            <img src="./icons/flechita.svg" alt="arrow" />
+            <img src={flechita} alt="arrow" />
             <p className="title">My order</p>
         </div>
         <div className="my-order-content">
